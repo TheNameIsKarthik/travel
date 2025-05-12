@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model UdoUser {
+  id        String    @id
+  phone     String?
+  chats     UdoChat[]
+  email     String?   @unique
+  type      String
+  status    String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model UdoChat {
+  id        String       @id @default(dbgenerated("gen_random_uuid()"))
+  title     String
+  favorite  Boolean      @default(false)
+  userId    String
+  user      UdoUser      @relation(fields: [userId], references: [id])
+  messages  UdoMessage[]
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model UdoMessage {
+  id        String   @id @default(dbgenerated("gen_random_uuid()"))
+  content   String
+  role      String
+  chatId    String
+  chat      UdoChat  @relation(fields: [chatId], references: [id])
+  createdAt DateTime @default(now())
+}

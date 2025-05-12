@@ -1,7 +1,5 @@
-import React from "react";
+import ChatLayout from "@/components/ChatLayout";
 
-const UdoChat = () => {
-  return <div>UdoChat</div>;
-};
-
-export default UdoChat;
+export default function Home() {
+  return <ChatLayout />;
+}

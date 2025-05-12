@@ -38,18 +38,18 @@ export default function Navbar() {
             <Link href='/about' className='transition-colors hover:text-foreground/80'>
               About
             </Link>
-            <Button onClick={() => openSignIn()} className='transition-colors hover:text-foreground/80'>
-              Login
-            </Button>
+            <Link href='/about' className='transition-colors hover:text-foreground/80'>
+              Contact
+            </Link>
             <ModeToggle />
           </nav>
 
           {user ? (
-            <div className='px-10 flex items-center'>
+            <div className='px-5 flex items-center'>
               <UserButton />
             </div>
           ) : (
-            <Button onClick={() => openSignIn()} asChild variant='outline' className='hidden md:flex'>
+            <Button onClick={() => openSignIn()} variant='outline' className='hidden md:flex'>
               Login
             </Button>
           )}

@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { clerkConfig } from "../../clerk.config";
-import Footer from "@/components/Footer";
+import { Toaster } from "react-hot-toast";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -28,7 +27,7 @@ export default function RootLayout({
       <html lang='en' suppressHydrationWarning>
         <body className={`${poppins.className} antialiased`}>
           <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
-            <Navbar />
+            <Toaster />
             {children}
           </ThemeProvider>
         </body>
