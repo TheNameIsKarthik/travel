@@ -21,13 +21,15 @@ interface ChatListProps {
   toggleFavorite: (chatId: string) => void;
   deleteChat: (chatId: string) => void;
   setActiveChat: (chatId: string) => void;
+  onClick: () => void;
 }
 
-export default function ChatList({ chats, activeChat, toggleFavorite, deleteChat, setActiveChat }: ChatListProps) {
+export default function ChatList({ chats, activeChat, toggleFavorite, deleteChat, setActiveChat, onClick }: ChatListProps) {
   return (
     <ul className='mt-2 space-y-1'>
       {chats.map((chat) => (
         <ChatItem
+          onClick={onClick}
           key={chat.id}
           chat={chat}
           isActive={activeChat?.id === chat.id}

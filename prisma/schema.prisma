@@ -37,5 +37,6 @@ model UdoMessage {
   role      String   
   chatId    String
   chat      UdoChat  @relation(fields: [chatId], references: [id])
+  carouselData Json?
   createdAt DateTime @default(now())
 }

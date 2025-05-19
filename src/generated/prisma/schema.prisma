@@ -31,10 +31,11 @@ model UdoChat {
 }
 
 model UdoMessage {
-  id        String   @id @default(dbgenerated("gen_random_uuid()"))
-  content   String
-  role      String
-  chatId    String
-  chat      UdoChat  @relation(fields: [chatId], references: [id])
-  createdAt DateTime @default(now())
+  id           String   @id @default(dbgenerated("gen_random_uuid()"))
+  content      String
+  role         String
+  chatId       String
+  chat         UdoChat  @relation(fields: [chatId], references: [id])
+  carouselData Json?
+  createdAt    DateTime @default(now())
 }

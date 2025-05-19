@@ -241,8 +241,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.7.0
-   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+   * Prisma Client JS version: 6.8.2
+   * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
    */
   export type PrismaVersion = {
     client: string
@@ -3340,6 +3340,7 @@ export namespace Prisma {
     content: number
     role: number
     chatId: number
+    carouselData: number
     createdAt: number
     _all: number
   }
@@ -3366,6 +3367,7 @@ export namespace Prisma {
     content?: true
     role?: true
     chatId?: true
+    carouselData?: true
     createdAt?: true
     _all?: true
   }
@@ -3447,6 +3449,7 @@ export namespace Prisma {
     content: string
     role: string
     chatId: string
+    carouselData: JsonValue | null
     createdAt: Date
     _count: UdoMessageCountAggregateOutputType | null
     _min: UdoMessageMinAggregateOutputType | null
@@ -3472,6 +3475,7 @@ export namespace Prisma {
     content?: boolean
     role?: boolean
     chatId?: boolean
+    carouselData?: boolean
     createdAt?: boolean
     chat?: boolean | UdoChatDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["udoMessage"]>
@@ -3481,6 +3485,7 @@ export namespace Prisma {
     content?: boolean
     role?: boolean
     chatId?: boolean
+    carouselData?: boolean
     createdAt?: boolean
     chat?: boolean | UdoChatDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["udoMessage"]>
@@ -3490,6 +3495,7 @@ export namespace Prisma {
     content?: boolean
     role?: boolean
     chatId?: boolean
+    carouselData?: boolean
     createdAt?: boolean
     chat?: boolean | UdoChatDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["udoMessage"]>
@@ -3499,10 +3505,11 @@ export namespace Prisma {
     content?: boolean
     role?: boolean
     chatId?: boolean
+    carouselData?: boolean
     createdAt?: boolean
   }
 
-  export type UdoMessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "role" | "chatId" | "createdAt", ExtArgs["result"]["udoMessage"]>
+  export type UdoMessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "role" | "chatId" | "carouselData" | "createdAt", ExtArgs["result"]["udoMessage"]>
   export type UdoMessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     chat?: boolean | UdoChatDefaultArgs<ExtArgs>
   }
@@ -3523,6 +3530,7 @@ export namespace Prisma {
       content: string
       role: string
       chatId: string
+      carouselData: Prisma.JsonValue | null
       createdAt: Date
     }, ExtArgs["result"]["udoMessage"]>
     composites: {}
@@ -3952,6 +3960,7 @@ export namespace Prisma {
     readonly content: FieldRef<"UdoMessage", 'String'>
     readonly role: FieldRef<"UdoMessage", 'String'>
     readonly chatId: FieldRef<"UdoMessage", 'String'>
+    readonly carouselData: FieldRef<"UdoMessage", 'Json'>
     readonly createdAt: FieldRef<"UdoMessage", 'DateTime'>
   }
     
@@ -4411,6 +4420,7 @@ export namespace Prisma {
     content: 'content',
     role: 'role',
     chatId: 'chatId',
+    carouselData: 'carouselData',
     createdAt: 'createdAt'
   };
 
@@ -4423,6 +4433,14 @@ export namespace Prisma {
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
   export const QueryMode: {
@@ -4439,6 +4457,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -4478,6 +4505,20 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -4634,6 +4675,7 @@ export namespace Prisma {
     content?: StringFilter<"UdoMessage"> | string
     role?: StringFilter<"UdoMessage"> | string
     chatId?: StringFilter<"UdoMessage"> | string
+    carouselData?: JsonNullableFilter<"UdoMessage">
     createdAt?: DateTimeFilter<"UdoMessage"> | Date | string
     chat?: XOR<UdoChatScalarRelationFilter, UdoChatWhereInput>
   }
@@ -4643,6 +4685,7 @@ export namespace Prisma {
     content?: SortOrder
     role?: SortOrder
     chatId?: SortOrder
+    carouselData?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     chat?: UdoChatOrderByWithRelationInput
   }
@@ -4655,6 +4698,7 @@ export namespace Prisma {
     content?: StringFilter<"UdoMessage"> | string
     role?: StringFilter<"UdoMessage"> | string
     chatId?: StringFilter<"UdoMessage"> | string
+    carouselData?: JsonNullableFilter<"UdoMessage">
     createdAt?: DateTimeFilter<"UdoMessage"> | Date | string
     chat?: XOR<UdoChatScalarRelationFilter, UdoChatWhereInput>
   }, "id">
@@ -4664,6 +4708,7 @@ export namespace Prisma {
     content?: SortOrder
     role?: SortOrder
     chatId?: SortOrder
+    carouselData?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: UdoMessageCountOrderByAggregateInput
     _max?: UdoMessageMaxOrderByAggregateInput
@@ -4678,6 +4723,7 @@ export namespace Prisma {
     content?: StringWithAggregatesFilter<"UdoMessage"> | string
     role?: StringWithAggregatesFilter<"UdoMessage"> | string
     chatId?: StringWithAggregatesFilter<"UdoMessage"> | string
+    carouselData?: JsonNullableWithAggregatesFilter<"UdoMessage">
     createdAt?: DateTimeWithAggregatesFilter<"UdoMessage"> | Date | string
   }
 
@@ -4825,6 +4871,7 @@ export namespace Prisma {
     id?: string
     content: string
     role: string
+    carouselData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     chat: UdoChatCreateNestedOneWithoutMessagesInput
   }
@@ -4834,6 +4881,7 @@ export namespace Prisma {
     content: string
     role: string
     chatId: string
+    carouselData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
 
@@ -4841,6 +4889,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
+    carouselData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chat?: UdoChatUpdateOneRequiredWithoutMessagesNestedInput
   }
@@ -4850,6 +4899,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     chatId?: StringFieldUpdateOperationsInput | string
+    carouselData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -4858,6 +4908,7 @@ export namespace Prisma {
     content: string
     role: string
     chatId: string
+    carouselData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
 
@@ -4865,6 +4916,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
+    carouselData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -4873,6 +4925,7 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     chatId?: StringFieldUpdateOperationsInput | string
+    carouselData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -5066,6 +5119,29 @@ export namespace Prisma {
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
   }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type UdoChatScalarRelationFilter = {
     is?: UdoChatWhereInput
@@ -5077,6 +5153,7 @@ export namespace Prisma {
     content?: SortOrder
     role?: SortOrder
     chatId?: SortOrder
+    carouselData?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -5094,6 +5171,32 @@ export namespace Prisma {
     role?: SortOrder
     chatId?: SortOrder
     createdAt?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
   export type UdoChatCreateNestedManyWithoutUserInput = {
@@ -5345,6 +5448,29 @@ export namespace Prisma {
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
   }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type UdoChatCreateWithoutUserInput = {
     id?: string
@@ -5431,6 +5557,7 @@ export namespace Prisma {
     id?: string
     content: string
     role: string
+    carouselData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
 
@@ -5438,6 +5565,7 @@ export namespace Prisma {
     id?: string
     content: string
     role: string
+    carouselData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
 
@@ -5506,6 +5634,7 @@ export namespace Prisma {
     content?: StringFilter<"UdoMessage"> | string
     role?: StringFilter<"UdoMessage"> | string
     chatId?: StringFilter<"UdoMessage"> | string
+    carouselData?: JsonNullableFilter<"UdoMessage">
     createdAt?: DateTimeFilter<"UdoMessage"> | Date | string
   }
 
@@ -5599,6 +5728,7 @@ export namespace Prisma {
     id?: string
     content: string
     role: string
+    carouselData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
 
@@ -5606,6 +5736,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
+    carouselData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -5613,6 +5744,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
+    carouselData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -5620,6 +5752,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
+    carouselData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

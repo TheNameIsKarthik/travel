@@ -41,8 +41,8 @@ export default function ChatLayout() {
   };
 
   useEffect(() => {
-    fetchChats();
-  }, []);
+    if (user) fetchChats();
+  }, [user]);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -88,9 +88,26 @@ export default function ChatLayout() {
         title: newTitle,
         messages: [],
       });
-      const newChat = response.data.chat;
+      const { chat, welcomeMessage } = response.data;
+
+      const typingMessage: Message = {
+        id: "typing-message",
+        content: "Typing...",
+        role: "assistant",
+      };
+
+      const newChat = {
+        ...chat,
+        messages: [typingMessage],
+      };
+
       setChats((prevChats) => [newChat, ...prevChats]);
       setActiveChatId(newChat.id);
+
+      // show typing... for 1.5sec
+      setTimeout(() => {
+        setChats((prevChats) => prevChats.map((chat) => (chat.id === newChat.id ? { ...chat, messages: [welcomeMessage] } : chat)));
+      }, 1500);
     } catch (error) {
       console.error("Error creating chat:", error);
       toast.error("Failed to create chat");
@@ -131,7 +148,7 @@ export default function ChatLayout() {
   const activeChat = chats.find((chat) => chat.id === activeChatId) || null;
 
   return (
-    <div className='flex h-screen w-full overflow-hidden bg-white text-black'>
+    <div className='flex h-screen w-full overflow-hidden bg-background text-foreground'>
       <MobileHeader toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
 
       <Sidebar

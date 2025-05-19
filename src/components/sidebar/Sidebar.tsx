@@ -1,7 +1,7 @@
 import React from "react";
 import NewChatButton from "./NewChatButton";
 import ChatList from "./ChatList";
-import { Compass, X } from "lucide-react";
+import { Book, Compass, Globe, Luggage, Wallet, X } from "lucide-react";
 import Link from "next/link";
 
 // Types
@@ -64,12 +64,37 @@ export default function Sidebar({
             createNewChat();
           }}
         />
+        {/* Navigation Section */}
+        <div className='mb-2 mt-4'>
+          <h2 className='px-3 text-xs font-medium uppercase text-muted-foreground'>Navigation</h2>
+          <nav className='mt-2 space-y-1'>
+            <Link href='/discover' className='flex items-center gap-3 px-3 py-2 text-sm hover:bg-gray-800/80 rounded-md'>
+              <Globe className='h-4 w-4' />
+              Discover
+            </Link>
+            <Link href='/user/bookings' className='flex items-center gap-3 px-3 py-2 text-sm hover:bg-gray-800/80 rounded-md'>
+              <Luggage className='h-4 w-4' />
+              Bookings
+            </Link>
+            <Link href='/user/wallet' className='flex items-center gap-3 px-3 py-2 text-sm hover:bg-gray-800/80 rounded-md'>
+              <Wallet className='h-4 w-4' />
+              Wallet
+            </Link>
+            <Link href='/user/experiences' className='flex items-center gap-3 px-3 py-2 text-sm hover:bg-gray-800/80 rounded-md'>
+              <Book className='h-4 w-4' />
+              Experiences
+            </Link>
+          </nav>
+        </div>
 
         {/* Favorites Section */}
         {favoriteChats.length > 0 && (
           <div className='mb-2 mt-4'>
             <h2 className='px-3 text-xs font-medium uppercase text-gray-400'>Favorites</h2>
             <ChatList
+              onClick={() => {
+                toggleSidebar();
+              }}
               chats={favoriteChats}
               activeChat={activeChat}
               toggleFavorite={toggleFavorite}
@@ -84,6 +109,7 @@ export default function Sidebar({
           <div className='mb-2 mt-4'>
             <h2 className='px-3 text-xs font-medium uppercase text-gray-400'>Chats</h2>
             <ChatList
+              onClick={() => toggleSidebar()}
               chats={regularChats}
               activeChat={activeChat}
               toggleFavorite={toggleFavorite}

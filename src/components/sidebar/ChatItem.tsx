@@ -24,9 +24,10 @@ interface ChatItemProps {
   toggleFavorite: (chatId: string) => void;
   deleteChat: (chatId: string) => void;
   setActiveChat: (chatId: string) => void;
+  onClick: () => void;
 }
 
-export default function ChatItem({ chat, isActive, toggleFavorite, deleteChat, setActiveChat }: ChatItemProps) {
+export default function ChatItem({ chat, isActive, toggleFavorite, deleteChat, setActiveChat, onClick }: ChatItemProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -44,6 +45,7 @@ export default function ChatItem({ chat, isActive, toggleFavorite, deleteChat, s
 
       {/* Action buttons - visible on hover */}
       <div
+        onClick={onClick}
         className={`absolute right-2 top-1/2 flex -translate-y-1/2 gap-2 transition-opacity
         ${isHovered ? "opacity-100" : "opacity-0"}`}
       >
